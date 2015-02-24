@@ -1,0 +1,15 @@
+extends ../includes/layout
+
+block main-content
+    section.container
+        h1 Find a Job !
+        div(ng-controller='mainCtrl as vm')
+            .list-group
+               a.list-group-item(href='#')(ng-repeat='job in vm.jobs')
+                    h4.list-group-item-heading {{job.title}}
+                    p.list-group-item-text {{job.description}}
+
+
+
+
+

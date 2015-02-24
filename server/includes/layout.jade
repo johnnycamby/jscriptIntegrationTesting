@@ -1,0 +1,11 @@
+doctype html
+html
+    head
+        link(href='favicon.ico', rel='shortcut icon', type='image/x-icon')
+        link(rel='stylesheet', href='/vendors/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', href='/vendors/toastr/toastr.css')
+        link(rel='stylesheet', href='/css/site.css')
+    body(ng-app='mainApp')
+        block main-content
+        div(ng-view)
+        include scripts

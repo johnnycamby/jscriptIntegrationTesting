@@ -1,0 +1,5 @@
+# mongo
+# show dbs
+# use jobfinder
+# show collections
+# db.jobs.find()
