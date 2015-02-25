@@ -6,12 +6,14 @@ var express = require('express');
 var stylus = require('stylus');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var jobsData = require('./public/app/util/jobs-data.js');
+var jobsData = require('./util/jobs-data.js');
 
 // define working enviroment
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
+
+require('./jobs-service.js')(jobsData, app);
 
 function compile(src, path){
     return stylus(src).set('filename', path);
@@ -28,14 +30,6 @@ app.use(stylus.middleware({
 
 // static route handling
 app.use(express.static(__dirname + '/public'));
-
-
-app.get('/api/jobs', function(req, res){
-    jobsData.findJobs().then(function(colln){
-        res.send(colln);
-    })
-
-})
 
 // '*' handle all request that are known or unknown to direct them to the index
 app.get('*', function(req, res){

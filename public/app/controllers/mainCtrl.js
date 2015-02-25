@@ -2,31 +2,30 @@
  * Created by johnny on 2/23/2015.
  */
 
-(function(){
+(function(app){
 
     'use strict';
 
-    angular.module('mainApp')
-        .controller('mainCtrl',['$resource', mainCtrl]);
-
-    function mainCtrl($resource){
+    function mainCtrl(jobsResource){
 
         var vm = this;
 
-        vm.jobs = $resource('/api/jobs').query();
+        jobsResource.query(function(data){
+            vm.jobs = data;
+        });
 
+        vm.submit = function(){
 
-/*
-        vm.jobs = [
-            {
-                title:'Sales Person',
-                description:'Be already for dealers'
-            },
-            {
-                title:'Accountant',
-                description:'You good at books balancing!'
-            }
-        ];
-*/
+            var job = {title: vm.title, description: vm.description};
+
+            jobsResource.save(job);
+
+            vm.jobs.push(job);
+        }
+
+      //  vm.jobs = $resource('/api/jobs').query();
+
     }
-}());
+
+    app.controller('mainCtrl',['jobsResource', mainCtrl]);
+}(angular.module('mainApp')));

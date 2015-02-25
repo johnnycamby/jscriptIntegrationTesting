@@ -7,5 +7,5 @@
 
     'use strict';
 
-    var app = angular.module('mainApp', ['ngResource']);
+    angular.module('mainApp', ['common.services']);
 }());

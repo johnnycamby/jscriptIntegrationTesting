@@ -2,10 +2,18 @@ extends ../includes/layout
 
 block main-content
     section.container
-        h1 Find a Job !
         div(ng-controller='mainCtrl as vm')
+            h1 Post a new Job
+            form(ng-submit="vm.submit()")
+                .form-group
+                    input.form-control(placeholder="Title" ng-model="vm.title")
+                .form-group
+                    textarea.form-control(placeholder="Description" ng-model="vm.description")
+                .form-group
+                    button.btn.btn-primary.btn-sm(type="submit") Post
+            h1 Find a Job !
             .list-group
-               a.list-group-item(href='#')(ng-repeat='job in vm.jobs')
+                a.list-group-item(href='#')(ng-repeat='job in vm.jobs')
                     h4.list-group-item-heading {{job.title}}
                     p.list-group-item-text {{job.description}}
 
